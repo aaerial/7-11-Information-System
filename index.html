@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" type="image/x-icon" href="images/logo.png">
+    <title>7/11</title>
+
+    <style>
+        /* 
+        Green: #009639
+        Red: #E03C31
+        Orange: #FF6A13
+        White: #FFFFFF
+        */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-decoration: none;
+            list-style: none;
+        }
+
+        p {
+            text-indent: 40px;
+        }
+
+        #home {
+            height: 100vh;
+            width: auto;
+            background-image: url(images/711.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            /* background-attachment: fixed; */
+            background-size: cover;
+        }
+
+        .navigation {
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            /* overflow: hidden; */
+            height: 80px;
+        }
+
+        .navigation img {
+            height: 100px;
+            width: auto;
+        }
+
+        .navigation nav {
+            display: flex;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .navigation a:hover,
+        .navigation button:hover {
+            color: green;
+            text-shadow: 0 0 25px green,
+                0 0 25px green;
+            transform: scale(1.1);
+        }
+
+        .navigation a {
+            font-size: 18px;
+            color: black;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropbtn {
+            font-size: 16px;
+            border: none;
+            background: none;
+            color: black;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #FFFFFF;
+            min-width: 200px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        #about-us {
+            height: 100vh;
+            width: 100%;
+            /* margin-bottom: 10px; */
+            /* border: red solid; */
+        }
+
+        .about-div {
+            margin: 10px;
+        }
+
+        .about-div p {
+            text-align: justify;
+            margin: 20px;
+            font-size: 22px;
+        }
+
+        .about-div iframe {
+            height: 400px;
+            width: 500px;
+            border: none;
+            float: right;
+            margin-left: 20px;
+        }
+
+        #img2 {
+            height: 220px;
+            width: auto;
+            float: left;
+            margin-right: 20px;
+        }
+
+        #products {
+            border: palevioletred solid;
+            height: 100vh;
+            width: 100%;
+            background-color: white;
+            margin-bottom: 10px;
+        }
+
+        .header-container {
+            /* border: black solid; */
+            height: 100px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            text-align: center;
+        }
+
+        #or,
+        #gr,
+        #re {
+            height: 33.33%;
+        }
+
+        .header-text {
+            /* border: purple solid; */
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .header-text h1 {
+            font-size: 70px;
+            color: white;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+        }
+
+        #products img {
+            width: auto;
+            height: 170px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .prod-main {
+            display: flex;
+            justify-content: space-around;
+            /* border: black solid; */
+        }
+
+        .product-list {
+            background-color: orange;
+            overflow: auto;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+            height: 80vh;
+            width: 45%;
+            /* border: black solid; */
+        }
+
+        .service-list {
+            width: 50%;
+            box-shadow: 0px 4px 5px #282828;
+            /* border: black solid; */
+        }
+
+        .product-container {
+            background-color: #ffd700;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            width: 400px;
+            height: 300px;
+            border-radius: 5%;
+            box-shadow: 0px 4px 5px #282828;
+        }
+
+        .product-text {
+            margin: 10px;
+            text-align: justify;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #sop {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffd700;
+        }
+
+        .sop-main {
+            height: 85vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sop-main div {
+            background-color: white;
+            width: 75%;
+            height: 75%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            text-align: justify;
+            font-size: 25px;
+            padding: 20px;
+            border-radius: 5%;
+            border: black solid;
+            border-style: dashed;
+        }
+
+        #ishikawa {
+            margin-top: 10px;
+            border: red solid;
+            height: 140vh;
+            background-color: #ffd700;
+        }
+
+        .ishikawa-main {
+            font-size: 25px;
+            text-align: justify;
+            gap: 10px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ishikawa-image img {
+            width: auto;
+            height: 650px;
+        }
+
+        #current {
+            margin-top: 10px;
+            height: 158vh;
+            background-color: #ffd700;
+        }
+
+        #proposed {
+            margin-top: 10px;
+            height: 150vh;
+            background-color: #ffd700;
+        }
+
+        .diagram-container {
+            overflow: hidden;
+            /* border: red solid; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            height: 90.5%;
+            width: auto;
+        }
+
+        .diagram-container img {
+            height: 85%;
+            width: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <section id="home">
+        <header class="navigation">
+            <div>
+                <img src="images/emblem.png" alt="7/11 Emblem" id="emblem">
+            </div>
+            <nav>
+                <a href="">Home</a>
+                <a href="#about-us">About Us</a>
+                <a href="#products">Products & Services</a>
+                <div class="dropdown">
+                    <a href="#sop"><button class="dropbtn">Statement of the Problem <i
+                                class="fa fa-caret-down"></i></button></a>
+                    <div class="dropdown-content">
+                        <a href="#ishikawa">Ishikawa Diagram</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">Process Flow <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="#current">Current Process Flow</a>
+                        <a href="#proposed">Proposed Process Flow</a>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    </section>
+    <section id="about-us">
+        <div class="about-div">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1962.6556344425364!2d123.9090929584178!3d10.31695519309943!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a999e7f46ddd89%3A0x6c293338fec42d36!2s7-Eleven!5e0!3m2!1sen!2sph!4v1747639042679!5m2!1sen!2sph"
+                width="600" height="450" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="header-container">
+                <div id="or" style="background-color: #FF6A13;"></div>
+                <div id="gr" style="background-color: #009639;"></div>
+                <div id="re" style="background-color: #E03C31;"></div>
+                <div class="header-text">
+                    <h1>About us</h1>
+                </div>
+            </div>
+            <p>7-Eleven Philippines is operated by Philippine Seven Corporation (PSC), which follows a franchise
+                model emphasizing shared success between the franchisor and franchisees. This model provides
+                comprehensive support in areas such as product development, store maintenance, and
+                bookkeeping services, allowing franchisees to focus primarily on daily operations and customer
+                engagement.</p>
+            <p>The 7-Eleven store located at Ayala Cebu, Samar Loop, is one of the franchised branches of this
+                globally recognized convenience store chain. Uniquely, this branch is owned and operated by
+                three entrepreneurial sisters who ventured into the retail industry together. Their partnership
+                reflects strong family values and a collaborative approach to business, dedicated to delivering
+                quality service and convenience to their community.
+            </p>
+            <img src="images/711pos.jpg" id="img2">
+            <p>This branch aligns closely with 7-Eleven Philippines’ mission: “To make daily life easier by
+                providing modern convenience,” and vision: “To be the best retailer of convenience for emerging
+                markets.” These guiding principles ensure consistent service quality and a reliable customer
+                experience across all 7-Eleven branches.</p>
+            <p> The Hop-Inn branch at Ayala Cebu is managed by one store manager and supported by a team of
+                12 workers who rotate in shifts to ensure smooth and continuous store operations.
+            </p>
+        </div>
+    </section>
+    <section id="products">
+        <div class="header-container">
+            <div id="or" style="background-color: #FF6A13;"></div>
+            <div id="gr" style="background-color: #009639;"></div>
+            <div id="re" style="background-color: #E03C31;"></div>
+            <div class="header-text">
+                <h1>Products and Services</h1>
+            </div>
+        </div>
+        <div class="prod-main">
+            <div class="product-list">
+                <h1 style="text-decoration: underline;">Ready-to-Eat Meals</h1>
+                <div class="product-container">
+                    <img src="images/crunchtime.jpg">
+                    <div class="product-text">
+                        <h1>Crunch Time</h1>
+                        <p>Features fried chicken, chicken fillet, nuggets, corn dogs, siomai, fries, and fried bread.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-container">
+                    <img src="images/ulam.jpg">
+                    <div class="product-text">
+                        <h1>Ulam To-Go</h1>
+                        <p>In partnership with Joliant Restaurant, offering Filipino favorites like pork sisig,
+                            kare-kare, dinuguan, beef caldereta, liempo, and pork steak.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-container">
+                    <img src="images/sandwich.jpg">
+                    <div class="product-text">
+                        <h1>7-Fresh Line</h1>
+                        <p>In partnership with Joliant Restaurant, offering Filipino favorites like pork sisig,
+                            kare-kare, dinuguan, beef caldereta, liempo, and pork steak.
+                        </p>
+                    </div>
+                </div>
+                <h1 style="text-decoration: underline;">Beverages</h1>
+                <div class="product-container">
+                    <img src="images/slurpee.jpg">
+                    <div class="product-text">
+                        <h1>Slurpee</h1>
+                        <p>Carbonated slush available in various flavors.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="product-container">
+                    <img src="images/coffee.jpg">
+                    <div class="product-text">
+                        <h1>City Café</h1>
+                        <p>Serves freshly brewed coffee and flavored syrups.
+                        </p>
+                    </div>
+                </div>
+
+                <h1 style="text-decoration: underline;">Snack and Desserts</h1>
+                <div class="product-container">
+                    <img src="images/chip.jpg">
+                    <div class="product-text">
+                        <h1>7-Select Potato Chips</h1>
+                        <p>Private label chips available in flavors like seaweed, cheese, sour cream and onion,
+                            barbeque, and original.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-container">
+                    <img src="images/dessert.jpg">
+                    <div class="product-text">
+                        <h1>Desserts</h1>
+                        <p>Includes items like chocolate cream puffs, vanilla cream puffs, mango cheesecake, and mango
+                            sago.
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- end of product list -->
+
+            <div class="product-list">
+                <h1 style="text-decoration: underline;">Financial Transactions</h1>
+                <div class="product-container">
+                    <img src="images/atm.jpg">
+                    <div class="product-text">
+                        <h1>ATM Services</h1>
+                        <p>ATMs are available.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-container">
+                    <img src="images/emoney.jpg">
+                    <div class="product-text">
+                        <h1>E-Money Services</h1>
+                        <p>Add e-money to various digital wallets.
+                        </p>
+                    </div>
+                </div>
+                <div class="product-container">
+                    <img src="images/epayment.jpg">
+                    <div class="product-text">
+                        <h1>Bill Payments</h1>
+                        <p>Utility bills, credit cards, and more.
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- end of product list -->
+        </div>
+    </section>
+
+    <section id="sop">
+        <div class="header-container">
+            <div id="or" style="background-color: #FF6A13;"></div>
+            <div id="gr" style="background-color: #009639;"></div>
+            <div id="re" style="background-color: #E03C31;"></div>
+            <div class="header-text">
+                <h1>Statement of the Problem</h1>
+            </div>
+        </div>
+        <div class="sop-main">
+            <div>
+                <p>The inventory management system at the selected 7-Eleven branch has faced
+                    challenges in maintaining optimal stock levels, resulting in frequent product
+                    shortages over the past three months. These shortages have led to missed sales
+                    opportunities, negatively affecting both customer satisfaction and overall store
+                    performance.</p>
+                <p>Although the branch uses an automated replenishment system, it does not
+                    consistently reflect real-time demand or quickly adapt to changes in customer
+                    purchasing behavior. As a result, the store often runs out of fast-moving items.</p>
+                <p>This study aims to investigate the root causes of these inventory shortages and
+                    propose improvements to the replenishment and stock monitoring processes
+                    to minimize stockouts and enhance product availability in the store.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="ishikawa">
+        <div class="header-container">
+            <div id="or" style="background-color: #FF6A13;"></div>
+            <div id="gr" style="background-color: #009639;"></div>
+            <div id="re" style="background-color: #E03C31;"></div>
+            <div class="header-text">
+                <h1>Ishikawa Diagram</h1>
+            </div>
+        </div>
+        <div class="ishikawa-main">
+            <div class="ishikawa-text">
+                <p>
+                    To determine the underlying causes of inventory
+                    imbalances at the 7-Eleven Hop Inn Cebu branch, a
+                    Fishbone Diagram (Ishikawa Diagram) was used to
+                    categorize potential factors under six major areas: Man,
+                    Machine,
+                    Materials,
+                    Method, Measurement, and
+                    Environment. This analysis highlights the need for
+                    integrated system improvements, better training, and a
+                    more adaptive inventory approach to ensure product
+                    availability and minimize waste.
+                </p>
+            </div>
+            <div class="ishikawa-image">
+                <img src="images/ishikawa.jpg" alt="">
+            </div>
+        </div>
+
+    </section>
+
+    <section id="current">
+        <div class="header-container">
+            <div id="or" style="background-color: #FF6A13;"></div>
+            <div id="gr" style="background-color: #009639;"></div>
+            <div id="re" style="background-color: #E03C31;"></div>
+            <div class="header-text">
+                <h1>Current Process Flow</h1>
+            </div>
+        </div>
+        <div class="diagram-container">
+            <img src="images/current.jpeg">
+        </div>
+    </section>
+
+    <section id="proposed">
+        <div class="header-container">
+            <div id="or" style="background-color: #FF6A13;"></div>
+            <div id="gr" style="background-color: #009639;"></div>
+            <div id="re" style="background-color: #E03C31;"></div>
+            <div class="header-text">
+                <h1>Proposed Process Flow</h1>
+            </div>
+        </div>
+        <div class="diagram-container">
+            <img src="images/proposed.jpg">
+        </div>
+    </section>
+</body>
+</html>
